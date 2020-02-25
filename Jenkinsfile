@@ -16,14 +16,14 @@ pipeline {
             steps {
                 echo 'Testing..'
 		sh 'mvn test'
-		archiveArtifacts artifacts: '**/target/*.jar', fingerprint: true
             }
         }
         stage('Package') {
             steps {
                 echo 'Deploying....'
 		sh 'mvn -DskipTests package'
-            }
+                archiveArtifacts artifacts: '**/target/*.jar', fingerprint: true
+	     }
         }
     }
 }
